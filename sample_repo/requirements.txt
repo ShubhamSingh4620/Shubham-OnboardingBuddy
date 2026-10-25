@@ -1,0 +1,4 @@
+flask==3.0.3
+sqlalchemy==2.0.30
+pyjwt==2.8.0
+pytest==8.2.0

@@ -1,0 +1,36 @@
+# Active LLM configuration: a fallback chain.
+#
+# Every model call walks this list top to bottom and stops at the first model that answers. If a model fails
+# for any reason (quota used up, rate limit, outage, wrong model name), the call moves on to the next entry.
+# An entry whose API key is not set is skipped automatically.
+#
+# Why several Gemini entries? Free-tier quotas are counted PER MODEL (and per Google project), so each Gemini
+# model below is a separate bucket of free requests on the same key. When one is used up, the next takes over.
+#
+# "max_retries": 0 makes a failing model hand over immediately instead of retrying for seconds on every call.
+# Mistral, near the end, keeps its default retries so it can ride out short per-minute rate limits.
+# OpenAI is last because an empty account would otherwise waste a failed request on every call. Move it up
+# once it has credits.
+#
+# Environment variables (put them in .env): GEMINI_API_KEY (or GOOGLE_API_KEY), MISTRAL_API_KEY, OPENAI_API_KEY
+#
+# If every entry fails, the error you see is the FIRST entry's, even when the real blocker was a later one.
+# Run `python scripts/check_providers.py` to see the true status of each entry.
+{
+    "llm_config": {
+        "fallbacks": [
+            {
+                "class": "gemini",
+                "model_name": "gemini-3-flash-preview",
+                "temperature": 0,
+                "max_retries": 0
+            },
+            {
+                "class": "gemini",
+                "model_name": "gemini-3.1-flash-lite",
+                "temperature": 0,
+                "max_retries": 0
+            }
+        ]
+    }
+}

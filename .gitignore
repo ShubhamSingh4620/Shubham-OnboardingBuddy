@@ -1,0 +1,21 @@
+# Virtual environments
+venv/
+.venv/
+
+# Secrets: never commit real keys
+.env
+# ...except the deliberately fake demo file inside the bundled sample repo
+!sample_repo/.env
+
+# Python / tooling caches
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local runtime artifacts
+logs/
+nss_local.db
+
+# OS files
+.DS_Store
+Thumbs.db

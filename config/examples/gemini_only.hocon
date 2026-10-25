@@ -1,0 +1,8 @@
+# Requires GEMINI_API_KEY (or GOOGLE_API_KEY)
+{
+    "llm_config": {
+        "class": "gemini",
+        "model_name": "gemini-3-flash-preview",
+        "temperature": 0
+    }
+}

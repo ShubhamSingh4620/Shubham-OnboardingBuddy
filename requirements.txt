@@ -1,0 +1,9 @@
+neuro-san-studio==0.3.8
+
+# neuro-san-studio only sets a minimum for these two. Newer releases removed modules it imports
+# (leaf_common.session, leaf_common.config.resolver_util), so the server fails to start. Keep them pinned.
+leaf-common==1.2.45
+leaf-server-common==0.1.25
+
+# Third provider in the LLM fallback chain (see config/llm_config.hocon).
+langchain-mistralai>=1.1.2,<2.0
